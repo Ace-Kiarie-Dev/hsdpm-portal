@@ -1,0 +1,22 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(Get-ChildItem -Path \"D:\\\\Work\\\\Code\\\\Code\\\\Clients\\\\Nesture-X\\\\hsdpm-portal\\\\frontend\" -Recurse -Force)",
+      "Bash(Select-Object -ExpandProperty FullName)",
+      "Bash(Sort-Object)",
+      "Bash(npx next *)",
+      "Bash(npm create *)",
+      "Bash(npm install *)",
+      "Bash(npx shadcn@latest init -d)",
+      "Bash(npx shadcn@latest init -d --tailwind-css src/index.css)",
+      "Bash(npx shadcn@latest add button card dialog sheet form input select tabs badge tooltip separator avatar skeleton sonner -y)",
+      "PowerShell(Get-ChildItem \"D:\\\\Work\\\\Code\\\\Code\\\\Clients\\\\Nesture-X\\\\hsdpm-portal\" -Recurse | Where-Object { $_.Name -eq \"button.tsx\" } | Select-Object FullName)",
+      "PowerShell(Head 20 *)",
+      "PowerShell(Get-ChildItem \"D:\\\\Work\\\\Code\\\\Code\\\\Clients\\\\Nesture-X\\\\hsdpm-portal\" -Recurse -Depth 8 | Where-Object { $_.Extension -eq \".tsx\" } | Select-Object -First 20 | Select-Object FullName)",
+      "PowerShell(cmd /c \"dir /S /B `\"D:\\\\Work\\\\Code\\\\Code\\\\Clients\\\\Nesture-X\\\\hsdpm-portal\\\\frontend\\\\@`\"\")",
+      "PowerShell(New-Item *)",
+      "Bash(npx tsc *)",
+      "Bash(npm run *)"
+    ]
+  }
+}
