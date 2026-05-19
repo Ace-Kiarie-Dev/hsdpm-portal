@@ -1,4 +1,4 @@
-import { useState, type ReactNode } from 'react'
+import { useState, useEffect, type ReactNode } from 'react'
 import { motion } from 'framer-motion'
 import { Sidebar } from './Sidebar'
 import { Topbar } from './Topbar'
@@ -11,11 +11,22 @@ interface DashboardLayoutProps {
 export function DashboardLayout({ children, pageTitle }: DashboardLayoutProps) {
   const [isCollapsed, setIsCollapsed] = useState(false)
   const [mobileOpen, setMobileOpen] = useState(false)
+  const [isMobile, setIsMobile] = useState(window.innerWidth < 768)
 
   const sidebarWidth = isCollapsed ? 64 : 260
 
+  useEffect(() => {
+    function onResize() {
+      const mobile = window.innerWidth < 768
+      setIsMobile(mobile)
+      if (!mobile) setMobileOpen(false)
+    }
+    window.addEventListener('resize', onResize)
+    return () => window.removeEventListener('resize', onResize)
+  }, [])
+
   function handleToggle() {
-    if (window.innerWidth < 768) {
+    if (isMobile) {
       setMobileOpen(prev => !prev)
     } else {
       setIsCollapsed(prev => !prev)
@@ -29,7 +40,7 @@ export function DashboardLayout({ children, pageTitle }: DashboardLayoutProps) {
         <Sidebar isCollapsed={isCollapsed} onToggle={handleToggle} />
       </div>
 
-      {/* Mobile overlay */}
+      {/* Mobile backdrop */}
       {mobileOpen && (
         <div
           onClick={() => setMobileOpen(false)}
@@ -60,7 +71,7 @@ export function DashboardLayout({ children, pageTitle }: DashboardLayoutProps) {
 
       {/* Main content */}
       <motion.div
-        animate={{ marginLeft: window.innerWidth >= 768 ? sidebarWidth : 0 }}
+        animate={{ marginLeft: isMobile ? 0 : sidebarWidth }}
         transition={{ duration: 0.25, ease: 'easeInOut' }}
         style={{ flex: 1, display: 'flex', flexDirection: 'column', minWidth: 0 }}
       >

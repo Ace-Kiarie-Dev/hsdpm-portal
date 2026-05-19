@@ -12,6 +12,7 @@ import {
   LogOut,
 } from 'lucide-react'
 import { Avatar, AvatarFallback } from '@/components/ui/avatar'
+import { useAuth } from '@/contexts/AuthContext'
 import type { Role } from '@/types'
 
 interface NavItem {
@@ -39,7 +40,9 @@ interface SidebarProps {
   onToggle: () => void
 }
 
-export function Sidebar({ isCollapsed }: SidebarProps) {
+export function Sidebar({ isCollapsed, onToggle }: SidebarProps) {
+  const { logout } = useAuth()
+
   const visibleItems = navItems.filter(
     item => !item.roles || item.roles.includes(CURRENT_ROLE),
   )
@@ -68,12 +71,11 @@ export function Sidebar({ isCollapsed }: SidebarProps) {
           display: 'flex',
           alignItems: 'center',
           gap: 10,
-          padding: isCollapsed ? '0 20px' : '0 20px',
+          padding: '0 20px',
           borderBottom: '1px solid var(--color-border)',
           flexShrink: 0,
         }}
       >
-        {/* Cross SVG */}
         <svg width="22" height="22" viewBox="0 0 22 22" fill="none" style={{ flexShrink: 0 }}>
           <rect x="9" y="1" width="4" height="20" rx="2" fill="var(--color-accent)" />
           <rect x="1" y="8" width="20" height="4" rx="2" fill="var(--color-accent)" />
@@ -103,6 +105,7 @@ export function Sidebar({ isCollapsed }: SidebarProps) {
           <NavLink
             key={item.href}
             to={item.href}
+            onClick={onToggle}
             style={({ isActive }) => ({
               display: 'flex',
               alignItems: 'center',
@@ -214,6 +217,7 @@ export function Sidebar({ isCollapsed }: SidebarProps) {
         )}
 
         <button
+          onClick={logout}
           style={{
             width: '100%',
             display: 'flex',

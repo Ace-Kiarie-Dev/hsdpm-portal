@@ -4,7 +4,6 @@ export async function register(req, res, next) {
   try {
     const { name, email, department, firebaseUid } = req.body;
 
-    // Required field guard (express-validator handles this, but belt-and-suspenders)
     if (!name || !email || !firebaseUid) {
       return res.status(400).json({
         success: false,
@@ -12,7 +11,6 @@ export async function register(req, res, next) {
       });
     }
 
-    // Prevent duplicate registrations
     const existing = await User.findOne({
       $or: [{ email: email.toLowerCase() }, { firebaseUid }],
     });
@@ -44,6 +42,7 @@ export async function register(req, res, next) {
       },
     });
   } catch (err) {
+    console.error('[register]', err);
     next(err);
   }
 }
@@ -80,6 +79,7 @@ export async function updateProfile(req, res, next) {
 
     return res.status(200).json({ success: true, data: user });
   } catch (err) {
+    console.error('[updateProfile]', err);
     next(err);
   }
 }

@@ -21,7 +21,9 @@
       "Bash(node --check src/config/env.js)",
       "Bash(node --check src/config/firebase.js)",
       "Bash(node --check src/models/User.js)",
-      "Bash(node --check src/middleware/auth.js)"
+      "Bash(node --check src/middleware/auth.js)",
+      "Bash(node --check src/middleware/validate.js)",
+      "Bash(node --check src/routes/auth.js)"
     ]
   }
 }

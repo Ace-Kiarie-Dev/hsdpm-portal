@@ -1,6 +1,6 @@
 import { body, validationResult } from 'express-validator';
 
-function handleValidation(req, res, next) {
+function checkValidationResult(req, res, next) {
   const errors = validationResult(req);
   if (!errors.isEmpty()) {
     return res.status(400).json({
@@ -12,6 +12,7 @@ function handleValidation(req, res, next) {
   next();
 }
 
+// Export as an array — always spread with ...validateRegister at the call site.
 export const validateRegister = [
   body('name')
     .notEmpty().withMessage('Name is required')
@@ -30,5 +31,5 @@ export const validateRegister = [
   body('firebaseUid')
     .notEmpty().withMessage('Firebase UID is required'),
 
-  handleValidation,
+  checkValidationResult,
 ];
