@@ -5,5 +5,7 @@ export const config = {
   port: process.env.PORT || 4000,
   mongoUri: process.env.MONGO_URI,
   jwtSecret: process.env.JWT_SECRET,
-  clientUrl: process.env.CLIENT_URL || 'http://localhost:3000',
+  clientUrl: process.env.CLIENT_URL || 'http://localhost:5173',
+  firebaseServiceAccount: process.env.FIREBASE_SERVICE_ACCOUNT_KEY,
+  nodeEnv: process.env.NODE_ENV || 'development',
 };

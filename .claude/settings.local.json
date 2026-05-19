@@ -16,7 +16,12 @@
       "PowerShell(cmd /c \"dir /S /B `\"D:\\\\Work\\\\Code\\\\Code\\\\Clients\\\\Nesture-X\\\\hsdpm-portal\\\\frontend\\\\@`\"\")",
       "PowerShell(New-Item *)",
       "Bash(npx tsc *)",
-      "Bash(npm run *)"
+      "Bash(npm run *)",
+      "Bash(node --check src/index.js)",
+      "Bash(node --check src/config/env.js)",
+      "Bash(node --check src/config/firebase.js)",
+      "Bash(node --check src/models/User.js)",
+      "Bash(node --check src/middleware/auth.js)"
     ]
   }
 }
